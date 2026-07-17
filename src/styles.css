@@ -1,0 +1,14 @@
+@layer components {
+  [data-git-working-tree], [data-git-commit-history], [data-git-review-list] {
+    border: 1px solid color-mix(in oklab, currentColor 18%, transparent);
+    border-radius: .75rem;
+    background: var(--color-background, Canvas);
+    color: var(--color-foreground, CanvasText);
+    overflow: hidden;
+  }
+  [data-git-working-tree] header, [data-git-working-tree] footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.75rem; }
+  [data-git-working-tree] ul, [data-git-commit-history] ol, [data-git-review-list] ul { list-style:none; margin:0; padding:0; }
+  [data-git-path], [data-git-commit-id], [data-git-review-number] { border-top:1px solid color-mix(in oklab,currentColor 12%,transparent); padding:.625rem .75rem; }
+  [data-git-commit-id] button, [data-git-review-number] button { display:grid; width:100%; text-align:left; gap:.2rem; background:none; border:0; color:inherit; cursor:pointer; }
+  button:focus-visible { outline:2px solid var(--color-ring, Highlight); outline-offset:2px; }
+}
