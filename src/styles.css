@@ -11,4 +11,11 @@
   [data-git-path], [data-git-commit-id], [data-git-review-number] { border-top:1px solid color-mix(in oklab,currentColor 12%,transparent); padding:.625rem .75rem; }
   [data-git-commit-id] button, [data-git-review-number] button { display:grid; width:100%; text-align:left; gap:.2rem; background:none; border:0; color:inherit; cursor:pointer; }
   button:focus-visible { outline:2px solid var(--color-ring, Highlight); outline-offset:2px; }
+  [data-git-repository-browser] button, [data-git-diff] button { background:none; border:0; color:inherit; cursor:pointer; }
+  [data-git-diff] pre { overflow:auto; margin:0; }
+  [data-git-diff-line] { display:grid; grid-template-columns:3rem 3rem minmax(max-content,1fr); width:100%; text-align:left; font:inherit; }
+  [data-git-diff-line][data-kind="addition"] { background:color-mix(in oklab,#22c55e 16%,transparent); }
+  [data-git-diff-line][data-kind="deletion"] { background:color-mix(in oklab,#ef4444 16%,transparent); }
+  [data-git-branch-picker], [data-git-commit-composer], [data-git-create-review] { display:grid; gap:.75rem; }
+  [data-git-commit-composer] label, [data-git-create-review] label { display:grid; gap:.25rem; }
 }
