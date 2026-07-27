@@ -57,6 +57,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **13 tests for `<DiffViewer>`**, against rendered DOM. It had none — which is
   how a `split` mode that rendered nothing shipped in the first place.
 
+### Fixed
+
+- **The diff header ran its title into its mode toggle** — it rendered as
+  `Changesunified`. Same defect `[data-git-path]` had in 0.1.2: two adjacent
+  inline boxes and no layout between them. The header, file headings and mode
+  toggle now have one.
+
 ## [0.1.2] — 2026-07-26
 
 ### Fixed
