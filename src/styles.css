@@ -6,7 +6,11 @@
     color: var(--color-foreground, CanvasText);
     overflow: hidden;
   }
-  [data-git-working-tree] header, [data-git-working-tree] footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.75rem; }
+  [data-git-working-tree] header { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.75rem; }
+  /* The footer is a group of actions, not two opposed ones. It inherited the
+     header's space-between and flung Stage and Unstage to opposite edges the
+     moment there were two of them. */
+  [data-git-working-tree] footer { display:flex; align-items:center; gap:.5rem; padding:.75rem; }
   [data-git-working-tree] ul, [data-git-commit-history] ol, [data-git-review-list] ul { list-style:none; margin:0; padding:0; }
   [data-git-path], [data-git-commit-id], [data-git-review-number] { border-top:1px solid color-mix(in oklab,currentColor 12%,transparent); padding:.625rem .75rem; }
   /* A working-tree row is a path and its status. Without a layout they were

@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-07-27
+
+### Fixed
+
+- **`WorkingTree`'s Stage and Unstage sat at opposite edges of the footer.** The
+  footer shared the header's `space-between`, which is right for a title and a
+  badge and wrong for a group of actions — the moment there were two buttons
+  they were flung apart. Caught by looking at it, not by the 34 tests, which
+  assert what the buttons do and cannot see where they sit.
+
 ## [0.3.0] — 2026-07-27
 
 ### Changed
