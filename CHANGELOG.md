@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-07-26
+
+### Fixed
+
+- **The diff header ran its title into its mode toggle** — it rendered as
+  `Changesunified`. The same defect `[data-git-path]` had in 0.1.2: two adjacent
+  inline boxes with no layout between them. The header, the per-file headings
+  and the mode toggle now have one, and the diff has a border like the other
+  surfaces.
+
+  Caught in a browser. The 13 tests assert structure and behaviour, and none of
+  them can see two words touching — which is the whole argument for looking at
+  the thing before calling it shipped.
+
 ## [0.2.0] — 2026-07-26
 
 ### Changed
@@ -57,12 +71,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **13 tests for `<DiffViewer>`**, against rendered DOM. It had none — which is
   how a `split` mode that rendered nothing shipped in the first place.
 
-### Fixed
-
-- **The diff header ran its title into its mode toggle** — it rendered as
-  `Changesunified`. Same defect `[data-git-path]` had in 0.1.2: two adjacent
-  inline boxes and no layout between them. The header, file headings and mode
-  toggle now have one.
 
 ## [0.1.2] — 2026-07-26
 
