@@ -22,6 +22,22 @@
   [data-git-diff-line] { display:grid; grid-template-columns:3rem 3rem minmax(max-content,1fr); width:100%; text-align:left; font:inherit; }
   [data-git-diff-line][data-kind="addition"] { background:color-mix(in oklab,#22c55e 16%,transparent); }
   [data-git-diff-line][data-kind="deletion"] { background:color-mix(in oklab,#ef4444 16%,transparent); }
+  /* Split mode renders one column per side, so a row carries a single line
+     number instead of the unified pair. Previously `split` was a data attribute
+     with no styles and no markup behind it — the toggle changed a label. */
+  [data-git-diff-lines="split"] { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:color-mix(in oklab,currentColor 12%,transparent); }
+  [data-git-diff-lines="split"] > pre { background:var(--color-background, Canvas); }
+  [data-git-diff-lines="split"] [data-git-diff-line] { grid-template-columns:3rem minmax(max-content,1fr); }
+  /* A pad keeps the two columns in step where one side is shorter. It has to
+     hold a row's height with no content, hence the explicit min-height. */
+  [data-git-diff-pad] { display:block; min-height:1lh; }
+  [data-git-hunk] { border-top:1px solid color-mix(in oklab,currentColor 12%,transparent); }
+  [data-git-hunk-toggle] { font-size:.75em; text-transform:uppercase; letter-spacing:.04em; padding:.25rem .5rem; }
+  /* Rejected is not "unreviewed". The old `selectedHunkIds` could not tell
+     them apart; the state now can, so the surface shows it. */
+  [data-git-hunk][data-hunk-status="accepted"] { box-shadow:inset .1875rem 0 0 #22c55e; }
+  [data-git-hunk][data-hunk-status="rejected"] { box-shadow:inset .1875rem 0 0 #ef4444; opacity:.55; }
+  [data-git-diff-partial], [data-git-diff-empty] { margin:0; padding:.5rem .75rem; font-size:.8em; opacity:.7; }
   [data-git-branch-picker], [data-git-commit-composer], [data-git-create-review] { display:grid; gap:.75rem; }
   [data-git-commit-composer] label, [data-git-create-review] label { display:grid; gap:.25rem; }
 }

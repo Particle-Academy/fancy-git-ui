@@ -10,6 +10,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-07-26
+
+### Changed
+
+- **BREAKING: `<DiffViewer>` now uses the suite's shared diff model** —
+  `@particle-academy/fancy-file-commons`, the same one fancy-diff and fancy-code
+  read. It had its own `DiffLine` / `DiffFile`, so a `Diff` produced anywhere
+  else in the suite could not be handed to it, and this was the poorer of the
+  two models: no word-level segmentation, no stable content-derived hunk ids,
+  and a `split` mode that was a data attribute with no rendering behind it.
+
+  **What you have to do**, in the order it will bite:
+
+  1. **Pass the patch string.** `value` now takes `fancy-git`'s `Diff.patch`
+     directly — `<DiffViewer value={diff.patch} />`. If you wrote a unified-diff
+     parser to feed the old `DiffFile[]`, **delete it**; that was work the
+     component should never have asked for. Already-parsed `Diff[]` also works,
+     for sharing one parse with another surface.
+  2. **Swap `selectedHunkIds` for `acceptance`.** It is a
+     `Record<hunkId, "accepted" | "rejected" | "pending">` rather than a
+     `string[]`, because an id that is either present or absent cannot
+     distinguish *not reviewed yet* from *turned down* — so a review could not
+     tell whether it was finished. Missing entries read as `pending`.
+     `onSelectedHunkIdsChange` becomes `onAcceptanceChange`.
+  3. **Nothing else.** `mode` / `onModeChange` / `className` are unchanged, and
+     every `data-git-*` handle an agent bridge or a stylesheet targets is
+     unchanged. If you only rendered a diff and never tracked selection, step 1
+     is your whole migration.
+
+  Add the peer: `npm install @particle-academy/fancy-file-commons`.
+
+### Added
+
+- **`split` mode actually renders two columns.** It previously set
+  `data-git-diff-mode="split"` and emitted identical markup, so the toggle
+  changed a label and nothing else. Sides pair by position and the shorter one
+  is padded, so a removal stays aligned with what replaced it.
+- **`hideContext`** drops the `equal` hunks git wraps around each change.
+- **A partial-diff notice.** A unified diff carries the changed regions and a
+  little context, never the whole file, so the viewer says so — otherwise a
+  reader takes a line's absence as evidence it is not in the file.
+- **An empty state.** An empty frame reads as a broken viewer.
+- **Renames show both paths** (`old.ts → new.ts`), and a deletion shows its real
+  path rather than `/dev/null`, via `fileLabel`.
+- **13 tests for `<DiffViewer>`**, against rendered DOM. It had none — which is
+  how a `split` mode that rendered nothing shipped in the first place.
+
 ## [0.1.2] — 2026-07-26
 
 ### Fixed
