@@ -9,6 +9,12 @@
   [data-git-working-tree] header, [data-git-working-tree] footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.75rem; }
   [data-git-working-tree] ul, [data-git-commit-history] ol, [data-git-review-list] ul { list-style:none; margin:0; padding:0; }
   [data-git-path], [data-git-commit-id], [data-git-review-number] { border-top:1px solid color-mix(in oklab,currentColor 12%,transparent); padding:.625rem .75rem; }
+  /* A working-tree row is a path and its status. Without a layout they were
+     adjacent inline boxes and ran together — "run-flow.tsmodified". */
+  [data-git-path] { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+  [data-git-path] label { display:flex; align-items:center; gap:.5rem; min-width:0; }
+  [data-git-path] code { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  [data-git-path] > span { flex:none; font-size:.75em; text-transform:uppercase; letter-spacing:.04em; opacity:.7; }
   [data-git-commit-id] button, [data-git-review-number] button { display:grid; width:100%; text-align:left; gap:.2rem; background:none; border:0; color:inherit; cursor:pointer; }
   button:focus-visible { outline:2px solid var(--color-ring, Highlight); outline-offset:2px; }
   [data-git-repository-browser] button, [data-git-diff] button { background:none; border:0; color:inherit; cursor:pointer; }
