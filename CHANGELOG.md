@@ -10,6 +10,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-07-27
+
+### Changed
+
+- **BREAKING (peer dep): every surface is now built from `react-fancy`.** They
+  were raw HTML — `<input type="checkbox">`, `<select>`, `<textarea>`, bare
+  `<button>` — in a kit whose whole premise is that its surfaces match the app
+  they are dropped into. A git panel rendering the browser's own native controls
+  was the one place that visibly wasn't true, and no amount of host CSS fixes a
+  native `<select>`.
+
+  **What you have to do:** `npm install @particle-academy/react-fancy` (^4.17.0).
+  That is the entire migration — **no prop changed, and every `data-git-*`
+  handle is exactly where it was**, so agent bridges and stylesheets targeting
+  them are unaffected.
+
+  What each surface now uses:
+
+  | | |
+  |---|---|
+  | `WorkingTree` | `<Checkbox>` (the path is its label), `<Badge>` for status, `<Button>` |
+  | `CommitHistory` | `<Avatar>` for the author, `<Text>`, `<Button>` |
+  | `ReviewList` | `<Badge>` coloured by state, `<Text>` |
+  | `RepositoryBrowser` | `<Breadcrumbs>`, `<Icon>`, `<Badge>` |
+  | `BranchPicker` | `<Select>`, `<Button>` |
+  | `CommitComposer` | `<Form>`, `<Input>`, `<Textarea>`, `<Button>` |
+  | `CreateReviewForm` | `<Form>`, `<Input>`, `<Select>`, `<Textarea>`, `<Checkbox>` |
+
+  **`RepositoryBrowser` is deliberately NOT `<TreeNav>`.** The shapes look
+  alike and the models are not: `TreeNav` holds a whole tree in memory and
+  expands in place, while this browser is lazy and one level at a time —
+  `value` is a single directory and `onPathChange` asks the host for the next.
+  A repository has far more files than anyone wants to load to draw one folder.
+
+### Added
+
+- **`mode="view"` on `CommitComposer` and `CreateReviewForm`** renders the draft
+  as text instead of fields. This is the propose-then-confirm half of the
+  package's trust-but-verify shape: someone reviewing an agent's draft should be
+  reading it, not looking at an edit form they can change by accident. Free from
+  `<Form>`, which broadcasts the mode to every input inside it.
+- **`CreateReviewForm` refuses a branch merging into itself**, with the reason on
+  the field. The provider rejects it too — after a round trip that spends a token
+  and a rate-limit unit, and reports it in its own wording.
+- **Selection is marked on the row** (`data-selected`) in `CommitHistory`,
+  `ReviewList` and `RepositoryBrowser`, so a host can style the whole row rather
+  than reaching for the button's `aria-pressed`.
+- **34 tests**, up from one. They assert against rendered DOM — an import proves
+  a module loaded, not that a primitive reached the page.
+
+### Fixed
+
+- **Entry icons were 📁/📄 emoji**, which ignored the host's icon set and rendered
+  differently on every platform. Now `<Icon>`, and a submodule and a symlink are
+  no longer both drawn as plain files.
+
 ## [0.2.1] — 2026-07-26
 
 ### Fixed
