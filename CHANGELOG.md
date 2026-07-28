@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Widened the `fancy-git` and `fancy-file-commons` requirement from `^0.1.0 / ^0.2.0` to `>=0.1 <2.0 / >=0.2 <2.0`, so a
+  sibling minor release is an upgrade and not a resolver conflict. **No action
+  needed** — widening a range only adds candidates; the version you have today
+  still resolves.
+
+  A caret on a `0.x` range locks the MINOR, so this pinned a sibling at
+  whatever it happened to be on the day it was written, and each sibling
+  release then read as a conflict to the resolver rather than an upgrade.
+  Nothing here was using an API the newer minors removed — the range was the
+  whole problem.
+
 ## [0.3.1] — 2026-07-27
 
 ### Fixed
@@ -151,7 +164,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   The row is now a flex line with the status pushed right and dimmed, and a long
   path ellipsises instead of pushing the status off the edge.
 
-  **What you must DO:** nothing, if you import `@particle-academy/fancy-git-ui/styles.css`.
+  **What you must DO:** nothing, if you import
+  `@particle-academy/fancy-git-ui/styles.css`.
   If you replaced that stylesheet with your own, add a layout for
   `[data-git-path]` — the markup is unchanged.
 

@@ -35,16 +35,16 @@
     "prepublishOnly": "npm run lint && npm test && npm run build"
   },
   "peerDependencies": {
-    "@particle-academy/fancy-file-commons": "^0.2.0",
-    "@particle-academy/fancy-git": "^0.1.0",
+    "@particle-academy/fancy-file-commons": ">=0.2 <2.0",
+    "@particle-academy/fancy-git": ">=0.1 <2.0",
     "@particle-academy/react-fancy": "^4.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
-    "@particle-academy/fancy-file-commons": "^0.2.0",
-    "@particle-academy/fancy-git": "^0.1.0",
+    "@particle-academy/fancy-file-commons": ">=0.2 <2.0",
+    "@particle-academy/fancy-git": "^0.1.2",
     "@particle-academy/react-fancy": "^4.17.0",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^19.0.0",
