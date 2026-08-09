@@ -10,6 +10,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-08-09
+
+### Added
+
+- **`layoutCommitGraph(commits)`** — lane assignment and edge routing for a
+  commit DAG, as a pure function of `Commit[]`. The first half of the
+  `CommitGraph` surface Genie asked for (#1).
+
+  Shipped as the ENGINE, deliberately ahead of any rendering. Lane assignment is
+  decided by git's semantics, not by a design, so it can be settled and tested
+  before anyone agrees what the panel looks like — and it will not need
+  reworking when the visual spec lands.
+
+  It returns, per row, the commit's `lane`, the `passthrough` lanes other
+  branches cross it in, and an `edge` per parent carrying `fromLane` / `toLane`
+  / `dangling`. `dangling` marks a parent outside the fetched window, so a
+  paged log fades those edges instead of drawing into a commit that never
+  appears.
+
+  Tested against the cases the story calls the hard ones, not just a linear
+  history: **octopus merges** (a lane per parent, none reused), **criss-cross
+  merges** (a commit awaited by two merges renders once, and both edges land on
+  its real lane), **orphan branches**, and a 301-commit history with 100
+  short-lived branches that must stay within 3 lanes. That last one is the
+  failure mode that makes hand-rolled graphs unusable on real repositories: a
+  hundred branches rendering a hundred near-empty columns.
+
+  `passthrough` deliberately excludes lanes the commit itself opened for its own
+  parents — those are already described by its edges, and drawing both would
+  paint an octopus merge's own branches as unrelated history flowing past it.
+
+
 ## [0.4.0] — 2026-08-07
 
 ### Changed

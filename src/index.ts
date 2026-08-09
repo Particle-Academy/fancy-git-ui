@@ -1,5 +1,6 @@
 export * from "./working-tree.js";
 export * from "./commit-history.js";
+export * from "./commit-graph/index.js";
 export * from "./review-list.js";
 export * from "./repository-browser.js";
 export * from "./diff-viewer.js";
