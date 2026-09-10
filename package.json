@@ -46,6 +46,7 @@
     "@particle-academy/fancy-file-commons": ">=0.2 <2.0",
     "@particle-academy/fancy-git": "^0.1.2",
     "@particle-academy/react-fancy": "^4.17.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
@@ -58,7 +59,7 @@
     "tsup": "^8.5.0",
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.65.0",
-    "vitest": "^3.2.0"
+    "vitest": "^4.1.11"
   },
   "repository": {
     "type": "git",
