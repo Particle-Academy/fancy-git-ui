@@ -1,5 +1,7 @@
 # Fancy Git UI
 
+[![Fancified](art/fancified.svg)](https://particle.academy)
+
 Controlled, provider-neutral React surfaces for repository state, commit history,
 and pull/merge requests. Components emit intents; they never invoke Git or a
 provider API themselves. Every entity has a stable `data-git-*` handle.
@@ -92,7 +94,7 @@ implementation detail.
 ## Backends
 
 Pairs with `@particle-academy/fancy-git` (Node) or
-`particle-academy/fancy-git-php` (Composer) — one normalized provider contract
+`particle-academy/fancy-git` (Composer) — one normalized provider contract
 across **GitHub, GitLab and Bitbucket**, so the same surface works against any of
 them. Mutations support a proposal-first mode: an agent proposes, a person
 confirms.
