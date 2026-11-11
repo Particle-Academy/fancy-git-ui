@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Releases need a lab-run certificate.** `publish.yml` gains a read-only
+  `lab-certificate` job that every publishing job needs: a tag is published only
+  when the fancy-labs lab has certified that exact version and commit. Consumers
+  do nothing; this changes how releases are cut, not what the package does.
+
 - Test environment: jsdom moved to 30 (devDependency only), dropping the deprecated `whatwg-encoding`. Consumer action: none.
 
 ### Fixed
@@ -71,7 +76,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   parents — those are already described by its edges, and drawing both would
   paint an octopus merge's own branches as unrelated history flowing past it.
 
-
 ## [0.4.0] — 2026-08-07
 
 ### Changed
@@ -91,7 +95,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Why
 
 These are the kit 0.5 platform floors, applied across every package at once so a consumer never has to resolve a mix. **No API changed, nothing was removed, nothing was renamed** — only what the package requires.
-
 
 ### Changed
 
@@ -232,7 +235,6 @@ These are the kit 0.5 platform floors, applied across every package at once so a
   path rather than `/dev/null`, via `fileLabel`.
 - **13 tests for `<DiffViewer>`**, against rendered DOM. It had none — which is
   how a `split` mode that rendered nothing shipped in the first place.
-
 
 ## [0.1.2] — 2026-07-26
 
