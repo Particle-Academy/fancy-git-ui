@@ -18,6 +18,13 @@ The styles are a thin default — layout and diff colouring, nothing opinionated
 Every rule targets a `data-git-*` attribute, so restyle by overriding those
 rather than by forking a component.
 
+<!-- fancy-agents-note:start -->
+> **For agents.** Every Fancy package, this one included, is listed on the
+> Fancy MCP catalog server at `https://ui.particle.academy/mcp` (streamable HTTP, no API key;
+> MCP id `fancy-ui`), with install commands and docs. How an agent installs
+> and uses this package is in [AGENTS.md](https://github.com/Particle-Academy/fancy-git-ui/blob/main/AGENTS.md).
+<!-- fancy-agents-note:end -->
+
 ## Components
 
 | | |
@@ -33,7 +40,7 @@ rather than by forking a component.
 
 Each is **controlled**: it takes a value and reports an intent, and does nothing
 on its own. That is what lets an agent drive the same surface a person is looking
-at — see the Human+ UX contract in the suite's `AGENTS.md`.
+at — see [AGENTS.md](./AGENTS.md) for the handles and the MCP bridge.
 
 ## `<DiffViewer>`
 
